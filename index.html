@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boss Creator Command Center | Signature7</title>
+    <style>
+        /* LUXE CEO AESTHETIC */
+        body, html { 
+            background-color: #000; 
+            color: #D4AF37; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Garamond', serif; 
+            height: 100vh; 
+            overflow: hidden; 
+        }
+        
+        header { 
+            text-align: center; 
+            padding: 15px 0; 
+            border-bottom: 1px solid #D4AF37; 
+            background: #000;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
+            z-index: 100;
+        }
+
+        h1 { 
+            letter-spacing: 6px; 
+            font-weight: 300; 
+            margin: 0; 
+            font-size: 1.4rem; 
+            text-transform: uppercase;
+        }
+
+        .main-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 60px); /* Subtract header height */
+        }
+
+        /* SIG7 FACE SECTION */
+        .agent-container { 
+            flex: 1.2; /* Gives slightly more room to the agent */
+            width: 100%; 
+            position: relative;
+            background: #000;
+        }
+
+        /* ARCHIVAL VAULT SECTION */
+        .vault-container { 
+            flex: 1; 
+            width: 100%; 
+            border-top: 2px solid #D4AF37; 
+            background: #fff; /* White background so the Doc is easy to read */
+        }
+
+        iframe { 
+            width: 100%; 
+            height: 100%; 
+            border: none; 
+        }
+
+        /* UI MOBILE OPTIMIZATION */
+        @media (max-width: 768px) {
+            h1 { font-size: 1rem; letter-spacing: 3px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SIGNATURE 7 | BOSS CREATORS</h1>
+</header>
+
+<div class="main-wrapper">
+    <!-- THE FACE: SIG7 MASTER AGENT -->
+    <div class="agent-container">
+        <iframe 
+            src="https://studio.d-id.com/agents/share?id=v2_agt_00PFfGo9&utm_source=copy&key=WjI5dloyeGxMVzloZFhSb01ud3hNREV6TXpnMU16WTNNakF3TVRjM01EUTJOemc2Tm10UVZGazFObkZEWVdRd2RVOXlRV3RHTlRWVg==" 
+            allow="microphone; camera; autoplay; encrypted-media; clipboard-write;"
+            title="SIG7 Digital Strategist">
+        </iframe>
+    </div>
+
+    <!-- THE VAULT: LIVE ARCHIVAL DOC -->
+    <div class="vault-container">
+        <iframe 
+            src="https://docs.google.com/document/d/14RMLYQAbHVyoo9yLlwELcmf7T9A1_9XOwM_EnXFUt9A/preview"
+            title="Archival Vault">
+        </iframe>
+    </div>
+</div>
+
+</body>
+</html>
