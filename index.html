@@ -5,67 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boss Creator Command Center | Signature7</title>
     <style>
-        body, html { 
-            background-color: #000; 
-            color: #D4AF37; 
-            margin: 0; 
-            padding: 0; 
-            font-family: 'Garamond', serif; 
-            height: 100vh; 
-            overflow: hidden; 
-            display: flex;
-            flex-direction: column;
-        }
-        
-        header { 
-            text-align: center; 
-            padding: 10px 0; 
-            border-bottom: 1px solid #D4AF37; 
-            background: #000;
-            flex-shrink: 0;
-        }
-
+        body, html { background-color: #000; color: #D4AF37; margin: 0; padding: 0; font-family: 'Garamond', serif; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+        header { text-align: center; padding: 10px 0; border-bottom: 1px solid #D4AF37; background: #000; flex-shrink: 0; }
         h1 { letter-spacing: 5px; font-weight: 300; margin: 0; font-size: 1.2rem; text-transform: uppercase; }
-
-        /* THE FACE: Top Section - Adjusted for full visibility */
-        .agent-window { 
-            flex: 2; /* Gives more room to see her full face/shoulders */
-            width: 100%; 
-            background: #000;
-            position: relative;
-        }
-        
-        /* THE VAULT: Bottom Section */
-        .vault-window { 
-            flex: 1; /* Neatly tucked at the bottom */
-            width: 100%; 
-            border-top: 2px solid #D4AF37; 
-            background: #fff;
-        }
-        
+        .main-container { display: flex; flex-direction: column; height: calc(100vh - 70px); }
+        .agent-window { flex: 2; width: 100%; background: #000; position: relative; }
+        .vault-window { flex: 1; width: 100%; border-top: 2px solid #D4AF37; background: #fff; }
         iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
-
-<header>
-    <h1>SIGNATURE 7 | BOSS CREATORS</h1>
-</header>
-
-<!-- THE FACE SECTION -->
-<div class="agent-window">
-    <iframe 
-        src="https://studio.d-id.com/agents/share?id=v2_agt_00PFfGo9&utm_source=copy&key=WjI5dloyeGxMVzloZFhSb01ud3hNREV6TXpnMU16WTNNakF3TVRjM01EUTJOemc2Tm10UVZGazFObkZEWVdRd2RVOXlRV3RHTlRWVg==" 
-        allow="microphone; camera; autoplay; encrypted-media; clipboard-write;">
-    </iframe>
+<header><h1>SIGNATURE 7 | BOSS CREATORS</h1></header>
+<div class="main-container">
+    <div class="agent-window">
+        <iframe 
+            src="https://studio.d-id.com/agents/share?id=v2_agt_00PFfGo9&utm_source=copy&key=WjI5dloyeGxMVzloZFhSb01ud3hNREV6TXpnMU16WTNNakF3TVRjM01EUTJOemc2Tm10UVZGazFObkZEWVdRd2RVOXlRV3RHTlRWVg==&stt_silence_timeout=5000" 
+            allow="microphone; camera; autoplay; encrypted-media; clipboard-write;">
+        </iframe>
+    </div>
+    <div class="vault-window">
+        <iframe src="https://docs.google.com/document/d/14RMLYQAbHVyoo9yLlwELcmf7T9A1_9XOwM_EnXFUt9A/preview"></iframe>
+    </div>
 </div>
-
-<!-- THE VAULT SECTION -->
-<div class="vault-window">
-    <iframe 
-        src="https://docs.google.com/document/d/14RMLYQAbHVyoo9yLlwELcmf7T9A1_9XOwM_EnXFUt9A/preview">
-    </iframe>
-</div>
-
 </body>
 </html>
