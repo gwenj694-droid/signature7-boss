@@ -22,7 +22,8 @@
             flex-wrap: wrap;
         }
 
-        input { background: #000; border: 1px solid #D4AF37; color: #fff; padding: 8px; border-radius: 5px; width: 250px; font-family: 'Garamond', serif; }
+        input { background: #000; border: 1px solid #D4AF37; color: #fff; padding: 8px; border-radius: 5px; width: 250px; font-family: 'Garamond', serif; font-size: 0.9rem; }
+        input:focus { outline: none; border-color: #fff; }
         
         .btn {
             background: #D4AF37;
@@ -37,7 +38,7 @@
             transition: 0.3s;
         }
 
-        .btn:hover { background: #fff; }
+        .btn:hover { background: #fff; transform: scale(1.02); }
         .vault-window { flex: 1; width: 100%; background: #fff; border-top: 2px solid #D4AF37; }
         iframe { width: 100%; height: 100%; border: none; }
     </style>
@@ -62,16 +63,23 @@
 
 <script>
     function registerEmail() {
-        const email = document.getElementById('clientEmail').value;
-        if(!email) { alert("Please enter your email first."); return; }
+        const emailInput = document.getElementById('clientEmail').value;
+        if(!emailInput || !emailInput.includes('@')) { 
+            alert("Please enter a valid email address."); 
+            return; 
+        }
         
-        // This sends the email to your Google Script to "Lock it in"
-        fetch("YOUR_GOOGLE_SCRIPT_URL_HERE", {
+        // REPLACE THE URL BELOW WITH YOUR GOOGLE SCRIPT URL (ending in /exec)
+        const scriptURL = "https://script.google.com/macros/s/AKfycbzVMpWQS-8wlWY5bnGLFTlfjX526_QAchpZe_uL7Muo3jXm09n1DhpMu-KSfs20fXzRg/exec";
+        
+        fetch(scriptURL, {
             method: "POST",
             mode: "no-cors",
-            body: JSON.stringify({ type: "registration", email: email })
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ type: "registration", email: emailInput })
         });
-        alert("Session Secured. You can now speak your command to SIG7.");
+        
+        alert("Legacy Channel Secured for: " + emailInput + ". You can now speak to SIG7.");
     }
 </script>
 </body>
