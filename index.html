@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boss Creator Command Center</title>
     <style>
         body, html { background-color: #000; color: #D4AF37; margin: 0; padding: 0; font-family: 'Garamond', serif; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
-        header { text-align: center; padding: 5px 0; border-bottom: 1px solid #D4AF37; background: #000; flex-shrink: 0; }
+        header { text-align: center; padding: 5px 0; border-bottom: 1px solid #D4AF37; }
         h1 { letter-spacing: 5px; font-weight: 300; margin: 0; font-size: 1rem; text-transform: uppercase; }
         .main-container { display: flex; flex-direction: column; height: calc(100vh - 40px); }
-        .agent-window { flex: 3; width: 100%; background: #000; position: relative; }
+        .agent-window { flex: 3; width: 100%; background: #000; }
         .control-bar { background: #111; padding: 10px; border-top: 1px solid #D4AF37; display: flex; flex-direction: column; align-items: center; gap: 5px; }
         .input-row { display: flex; gap: 5px; width: 100%; justify-content: center; }
         input, textarea { background: #000; border: 1px solid #D4AF37; color: #fff; padding: 6px; border-radius: 4px; font-family: 'Garamond', serif; font-size: 0.7rem; width: 45%; }
@@ -26,31 +25,20 @@
         <iframe src="https://studio.d-id.com/agents/share?id=v2_agt_00PFfGo9&utm_source=copy&key=WjI5dloyeGxMVzloZFhSb01ud3hNREV6TXpnMU16WTNNakF3TVRjM01EUTJOemc2Tm10UVZGazFObkZEWVdRd2RVOXlRV3RHTlRWVg==&stt_silence_timeout=5000" allow="microphone; camera; autoplay; encrypted-media; clipboard-write;"></iframe>
     </div>
     <div class="control-bar">
-        <div class="input-row">
-            <input type="email" id="email" placeholder="Recipient Email">
-            <input type="text" id="aesthetic" placeholder="Brand Aesthetic">
-        </div>
-        <div class="input-row">
-            <textarea id="story" placeholder="Brand Story"></textarea>
-            <textarea id="offer" placeholder="Offer Details"></textarea>
-        </div>
-        <div style="margin-top:5px; display:flex; gap:10px;">
-            <button class="btn" id="lockBtn" onclick="lockDNA()">SECURE SESSION & DNA</button>
-            <button class="btn" style="background: #000; color: #D4AF37; border: 1px solid #D4AF37;" onclick="document.getElementById('vframe').src += ''">REFRESH VAULT</button>
-        </div>
+        <div class="input-row"><input type="email" id="e" placeholder="Email"><input type="text" id="a" placeholder="Aesthetic"></div>
+        <div class="input-row"><textarea id="s" placeholder="Story"></textarea><textarea id="o" placeholder="Offer"></textarea></div>
+        <div style="margin-top:5px;"><button class="btn" id="l" onclick="l()">SECURE DNA & ACTIVATE SYSTEM</button></div>
     </div>
-    <div class="vault-window">
-        <iframe id="vframe" src="https://docs.google.com/document/d/14RMLYQAbHVyoo9yLlwELcmf7T9A1_9XOwM_EnXFUt9A/preview"></iframe>
-    </div>
+    <div class="vault-window"><iframe id="v" src="https://docs.google.com/document/d/14RMLYQAbHVyoo9yLlwELcmf7T9A1_9XOwM_EnXFUt9A/preview"></iframe></div>
 </div>
 <script>
-    function lockDNA() {
-        const btn = document.getElementById('lockBtn');
-        const data = { type: "registration", email: document.getElementById('email').value, aesthetic: document.getElementById('aesthetic').value, story: document.getElementById('story').value, offer: document.getElementById('offer').value };
-        if(!data.email) { alert("Email Required"); return; }
-        btn.innerText = "LOCKING...";
-        fetch("https://script.google.com/macros/s/AKfycbzVMpWQS-8wlWY5bnGLFTlfjX526_QAchpZe_uL7Muo3jXm09n1DhpMu-KSfs20fXzRg/exec", { method: "POST", mode: "no-cors", body: JSON.stringify(data) });
-        setTimeout(() => { btn.innerText = "DNA SECURED 🥂"; btn.style.background = "#fff"; }, 1000);
+    function l() {
+        const b = document.getElementById('l');
+        const d = { type: "registration", email: document.getElementById('e').value, aesthetic: document.getElementById('a').value, story: document.getElementById('s').value, offer: document.getElementById('o').value };
+        if(!d.email) return alert("Email Required");
+        b.innerText = "LOCKING...";
+        fetch("https://script.google.com/macros/s/AKfycbzVMpWQS-8wlWY5bnGLFTlfjX526_QAchpZe_uL7Muo3jXm09n1DhpMu-KSfs20fXzRg/exec", { method: "POST", mode: "no-cors", body: JSON.stringify(d) });
+        setTimeout(() => { b.innerText = "SYSTEM ACTIVE 🥂"; b.style.background = "#fff"; document.getElementById('v').src += ''; }, 2000);
     }
 </script>
 </body>
