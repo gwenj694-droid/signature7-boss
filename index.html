@@ -6,32 +6,36 @@
     <title>Boss Creator Command Center | Signature7</title>
     <style>
         body, html { background-color: #000; color: #D4AF37; margin: 0; padding: 0; font-family: 'Garamond', serif; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
-        header { text-align: center; padding: 10px 0; border-bottom: 1px solid #D4AF37; background: #000; flex-shrink: 0; }
-        h1 { letter-spacing: 5px; font-weight: 300; margin: 0; font-size: 1.2rem; text-transform: uppercase; }
-        .main-container { display: flex; flex-direction: column; height: calc(100vh - 70px); }
-        .agent-window { flex: 1.5; width: 100%; background: #000; position: relative; }
+        header { text-align: center; padding: 5px 0; border-bottom: 1px solid #D4AF37; background: #000; flex-shrink: 0; }
+        h1 { letter-spacing: 5px; font-weight: 300; margin: 0; font-size: 1.1rem; text-transform: uppercase; }
+        .main-container { display: flex; flex-direction: column; height: calc(100vh - 40px); }
+        
+        /* THE FACE: Given much more room */
+        .agent-window { flex: 3.5; width: 100%; background: #000; position: relative; }
         
         .control-bar {
             background: #111;
-            padding: 15px;
+            padding: 10px;
             border-top: 1px solid #D4AF37;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 5px;
         }
 
-        .input-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-        input, textarea { background: #000; border: 1px solid #D4AF37; color: #fff; padding: 8px; border-radius: 5px; font-family: 'Garamond', serif; font-size: 0.8rem; }
-        textarea { width: 300px; height: 40px; resize: none; }
+        .input-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; width: 100%; }
+        input, textarea { background: #000; border: 1px solid #D4AF37; color: #fff; padding: 6px; border-radius: 4px; font-family: 'Garamond', serif; font-size: 0.75rem; }
+        textarea { width: 45%; height: 35px; resize: none; }
+        input { width: 45%; }
         
+        .btn-group { display: flex; gap: 10px; margin-top: 5px; }
         .btn {
-            background: #D4AF37; color: #000; border: none; padding: 10px 25px; cursor: pointer;
-            font-weight: bold; text-transform: uppercase; font-size: 0.7rem; border-radius: 5px; transition: 0.3s;
+            background: #D4AF37; color: #000; border: none; padding: 6px 20px; cursor: pointer;
+            font-weight: bold; text-transform: uppercase; font-size: 0.65rem; border-radius: 4px; transition: 0.3s;
         }
         .btn:hover { background: #fff; }
         
-        .vault-window { flex: 1; width: 100%; background: #fff; border-top: 2px solid #D4AF37; }
+        .vault-window { flex: 1.5; width: 100%; background: #fff; border-top: 2px solid #D4AF37; }
         iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
@@ -45,14 +49,14 @@
     <div class="control-bar">
         <div class="input-row">
             <input type="email" id="clientEmail" placeholder="Delivery Email">
-            <input type="text" id="brandAesthetic" placeholder="Brand Aesthetic (e.g. Silk, Gold, Minimalist)">
+            <input type="text" id="brandAesthetic" placeholder="Brand Aesthetic (Silk, Gold, etc.)">
         </div>
         <div class="input-row">
-            <textarea id="brandStory" placeholder="Your Brand Story / Purpose"></textarea>
-            <textarea id="coreOffer" placeholder="Your Core Offer / Product Details"></textarea>
+            <textarea id="brandStory" placeholder="Your Brand Story"></textarea>
+            <textarea id="coreOffer" placeholder="Your Core Offer"></textarea>
         </div>
-        <div>
-            <button class="btn" onclick="secureSession()">Secure My Session & DNA</button>
+        <div class="btn-group">
+            <button class="btn" id="lockBtn" onclick="secureSession()">Secure My Session & DNA</button>
             <button class="btn" style="background: #000; color: #D4AF37; border: 1px solid #D4AF37;" onclick="document.getElementById('vault-frame').src += ''">Refresh Vault</button>
         </div>
     </div>
@@ -64,6 +68,7 @@
 
 <script>
     function secureSession() {
+        const lockBtn = document.getElementById('lockBtn');
         const data = {
             type: "registration",
             email: document.getElementById('clientEmail').value,
@@ -74,15 +79,16 @@
 
         if(!data.email) { alert("Please enter your email."); return; }
         
-        // PASTE YOUR GOOGLE SCRIPT URL BELOW
-        const scriptURL = "https://script.google.com/macros/s/AKfycbzVMpWQS-8wlWY5bnGLFTlfjX526_QAchpZe_uL7Muo3jXm09n1DhpMu-KSfs20fXzRg/exec";
+        lockBtn.innerText = "Locking DNA...";
         
-        fetch(scriptURL, {
+        fetch("https://script.google.com/macros/s/AKfycbzVMpWQS-8wlWY5bnGLFTlfjX526_QAchpZe_uL7Muo3jXm09n1DhpMu-KSfs20fXzRg/exec", {
             method: "POST",
             mode: "no-cors",
             body: JSON.stringify(data)
+        }).then(() => {
+            lockBtn.innerText = "DNA SECURED 🥂";
+            lockBtn.style.background = "#fff";
         });
-        alert("Brand DNA Locked. You can now speak to SIG7.");
     }
 </script>
 </body>
