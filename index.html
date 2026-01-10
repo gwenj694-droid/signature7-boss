@@ -9,36 +9,28 @@
         header { text-align: center; padding: 10px 0; border-bottom: 1px solid #D4AF37; background: #000; flex-shrink: 0; }
         h1 { letter-spacing: 5px; font-weight: 300; margin: 0; font-size: 1.2rem; text-transform: uppercase; }
         .main-container { display: flex; flex-direction: column; height: calc(100vh - 70px); }
-        .agent-window { flex: 2; width: 100%; background: #000; position: relative; }
+        .agent-window { flex: 1.5; width: 100%; background: #000; position: relative; }
         
         .control-bar {
             background: #111;
-            padding: 10px;
+            padding: 15px;
             border-top: 1px solid #D4AF37;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        input { background: #000; border: 1px solid #D4AF37; color: #fff; padding: 8px; border-radius: 5px; width: 250px; font-family: 'Garamond', serif; font-size: 0.9rem; }
-        input:focus { outline: none; border-color: #fff; }
+        .input-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+        input, textarea { background: #000; border: 1px solid #D4AF37; color: #fff; padding: 8px; border-radius: 5px; font-family: 'Garamond', serif; font-size: 0.8rem; }
+        textarea { width: 300px; height: 40px; resize: none; }
         
         .btn {
-            background: #D4AF37;
-            color: #000;
-            border: none;
-            padding: 8px 20px;
-            cursor: pointer;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.7rem;
-            border-radius: 5px;
-            transition: 0.3s;
+            background: #D4AF37; color: #000; border: none; padding: 10px 25px; cursor: pointer;
+            font-weight: bold; text-transform: uppercase; font-size: 0.7rem; border-radius: 5px; transition: 0.3s;
         }
-
-        .btn:hover { background: #fff; transform: scale(1.02); }
+        .btn:hover { background: #fff; }
+        
         .vault-window { flex: 1; width: 100%; background: #fff; border-top: 2px solid #D4AF37; }
         iframe { width: 100%; height: 100%; border: none; }
     </style>
@@ -51,9 +43,18 @@
     </div>
     
     <div class="control-bar">
-        <input type="email" id="clientEmail" placeholder="Enter Email for PDF Delivery">
-        <button class="btn" onclick="registerEmail()">Secure My Session</button>
-        <button class="btn" style="background: #000; color: #D4AF37; border: 1px solid #D4AF37;" onclick="document.getElementById('vault-frame').src += ''">Refresh Vault</button>
+        <div class="input-row">
+            <input type="email" id="clientEmail" placeholder="Delivery Email">
+            <input type="text" id="brandAesthetic" placeholder="Brand Aesthetic (e.g. Silk, Gold, Minimalist)">
+        </div>
+        <div class="input-row">
+            <textarea id="brandStory" placeholder="Your Brand Story / Purpose"></textarea>
+            <textarea id="coreOffer" placeholder="Your Core Offer / Product Details"></textarea>
+        </div>
+        <div>
+            <button class="btn" onclick="secureSession()">Secure My Session & DNA</button>
+            <button class="btn" style="background: #000; color: #D4AF37; border: 1px solid #D4AF37;" onclick="document.getElementById('vault-frame').src += ''">Refresh Vault</button>
+        </div>
     </div>
 
     <div class="vault-window">
@@ -62,24 +63,26 @@
 </div>
 
 <script>
-    function registerEmail() {
-        const emailInput = document.getElementById('clientEmail').value;
-        if(!emailInput || !emailInput.includes('@')) { 
-            alert("Please enter a valid email address."); 
-            return; 
-        }
+    function secureSession() {
+        const data = {
+            type: "registration",
+            email: document.getElementById('clientEmail').value,
+            aesthetic: document.getElementById('brandAesthetic').value,
+            story: document.getElementById('brandStory').value,
+            offer: document.getElementById('coreOffer').value
+        };
+
+        if(!data.email) { alert("Please enter your email."); return; }
         
-        // REPLACE THE URL BELOW WITH YOUR GOOGLE SCRIPT URL (ending in /exec)
+        // PASTE YOUR GOOGLE SCRIPT URL BELOW
         const scriptURL = "https://script.google.com/macros/s/AKfycbzVMpWQS-8wlWY5bnGLFTlfjX526_QAchpZe_uL7Muo3jXm09n1DhpMu-KSfs20fXzRg/exec";
         
         fetch(scriptURL, {
             method: "POST",
             mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ type: "registration", email: emailInput })
+            body: JSON.stringify(data)
         });
-        
-        alert("Legacy Channel Secured for: " + emailInput + ". You can now speak to SIG7.");
+        alert("Brand DNA Locked. You can now speak to SIG7.");
     }
 </script>
 </body>
