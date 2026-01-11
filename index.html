@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boss Creator Command Center | Signature7</title>
     <style>
-        /* LUXE CEO AESTHETIC */
+        /* LUXE CEO AESTHETIC - SIGNATURE 7 */
         body, html { 
             background-color: #000; 
             color: #D4AF37; 
@@ -61,7 +61,7 @@
             padding: 10px; 
             border-radius: 5px; 
             font-family: 'Garamond', serif; 
-            font-size: 0.8rem; 
+            font-size: 0.85rem; 
             width: 220px; 
         }
 
@@ -75,12 +75,12 @@
             cursor: pointer; 
             font-weight: bold; 
             text-transform: uppercase; 
-            font-size: 0.65rem; 
+            font-size: 0.7rem; 
             border-radius: 5px; 
             transition: 0.3s; 
         }
 
-        .btn:hover { background: #fff; transform: scale(1.05); }
+        .btn:hover { background: #fff; transform: scale(1.02); }
 
         .btn-refresh {
             background: #000;
@@ -114,9 +114,9 @@
     
     <!-- THE CONTROLS (EMAIL & DNA) -->
     <div class="control-bar">
-        <input type="email" id="email" placeholder="Recipient Email Address">
-        <input type="text" id="dna" placeholder="Brand Essence/Tone">
-        <button class="btn" id="lockBtn" onclick="lockSession()">SECURE & ACTIVATE PORTAL</button>
+        <input type="email" id="email" placeholder="Recipient Email Address" style="width: 220px;">
+        <input type="text" id="dna" placeholder="Brand Essence (Gold, Luxury, etc.)" style="width: 250px;">
+        <button class="btn" id="lockBtn" onclick="lockSession()">SECURE SESSION</button>
         <button class="btn btn-refresh" onclick="refreshVault()">REFRESH VAULT</button>
     </div>
 
@@ -128,33 +128,44 @@
 
 <script>
     function lockSession() {
-        const e = document.getElementById('email').value;
-        const d = document.getElementById('dna').value;
+        const emailInput = document.getElementById('email').value;
+        const dnaInput = document.getElementById('dna').value;
         const btn = document.getElementById('lockBtn');
-        const v = document.getElementById('vframe');
+        const vframe = document.getElementById('vframe');
         
-        if(!e.includes('@')) return alert("Please enter a valid email address.");
+        if(!emailInput || !emailInput.includes('@')) { 
+            alert("Please enter a valid recipient email address."); 
+            return; 
+        }
+
+        btn.innerText = "LOCKING ENGINE...";
+        btn.style.opacity = "0.5";
+
+        // THE UPDATED URL PROVIDED
+        const scriptURL = "https://script.google.com/macros/s/AKfycbxawSWa1RGOqTRSKJZXhGspOix6gcU6-6B8KBwLW5HzFTAFUdK5oH-eX1gXuW3HuTNg/exec";
         
-        btn.innerText = "ARMING SYSTEM...";
-        
-        // YOUR UPDATED GOOGLE SCRIPT URL
-        const url = "https://script.google.com/macros/s/AKfycbzVMpWQS-8wlWY5bnGLFTlfjX526_QAchpZe_uL7Muo3jXm09n1DhpMu-KSfs20fXzRg/exec";
-        
-        // Send the data to the script
-        fetch(url, {
+        // This physically triggers the Google Script to write the email to the Doc
+        fetch(scriptURL, {
             method: "POST",
             mode: "no-cors",
-            body: JSON.stringify({ type: "registration", email: e, context: d })
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ 
+                type: "registration", 
+                email: emailInput, 
+                context: dnaInput 
+            })
         });
 
-        // We wait 3 seconds to ensure the Doc is updated, then refresh the frame
+        // We wait for the script to write the 'BOSS_SYSTEM_ACTIVE' line
         setTimeout(() => {
-            btn.innerText = "SYSTEM ACTIVE 🥂";
+            btn.innerText = "VAULT SECURED 🥂";
             btn.style.background = "#fff";
             btn.style.color = "#000";
-            // Refresh the vault window so the user sees the email change
-            v.src = v.src; 
-        }, 3000);
+            btn.style.opacity = "1";
+            
+            // Refresh the vault window so you can SEE the email is locked in
+            vframe.src = vframe.src;
+        }, 4000);
     }
 
     function refreshVault() {
