@@ -1,66 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boss Creator Command Center</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boss Creator Command Center | Signature7</title>
     <style>
-        body, html { background-color: #000; color: #D4AF37; margin: 0; padding: 0; font-family: 'Garamond', serif; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
-        header { text-align: center; padding: 10px 0; border-bottom: 1px solid #D4AF37; background: #000; flex-shrink: 0; }
-        h1 { letter-spacing: 5px; font-weight: 300; margin: 0; font-size: 1rem; text-transform: uppercase; }
-        .main-container { display: flex; flex-direction: column; height: calc(100vh - 40px); }
-        .agent-window { flex: 3; width: 100%; background: #000; }
-        .control-bar { background: #111; padding: 10px; border-top: 1px solid #D4AF37; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; }
-        input { background: #000; border: 1px solid #D4AF37; color: #fff; padding: 8px; border-radius: 4px; font-family: 'Garamond', serif; font-size: 0.8rem; width: 220px; }
-        .btn { background: #D4AF37; color: #000; border: none; padding: 8px 20px; cursor: pointer; font-weight: bold; text-transform: uppercase; font-size: 0.6rem; border-radius: 4px; }
-        .vault-window { flex: 1.5; width: 100%; background: #fff; border-top: 2px solid #D4AF37; }
+        /* LUXE CEO AESTHETIC */
+        body, html { 
+            background-color: #000; 
+            color: #D4AF37; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Garamond', serif; 
+            height: 100vh; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        
+        header { 
+            text-align: center; 
+            padding: 10px 0; 
+            border-bottom: 1px solid #D4AF37; 
+            background: #000; 
+            flex-shrink: 0; 
+        }
+
+        h1 { letter-spacing: 5px; font-weight: 300; margin: 0; font-size: 1.1rem; text-transform: uppercase; }
+
+        .main-container { 
+            display: flex; 
+            flex-direction: column; 
+            height: calc(100vh - 40px); 
+        }
+        
+        /* FACE SECTION: SIG7 */
+        .agent-window { 
+            flex: 3; 
+            width: 100%; 
+            background: #000; 
+            position: relative; 
+        }
+        
+        /* CONTROL BAR: THE DNA LOCK */
+        .control-bar { 
+            background: #111; 
+            padding: 12px; 
+            border-top: 1px solid #D4AF37; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 12px; 
+            flex-wrap: wrap; 
+        }
+
+        input { 
+            background: #000; 
+            border: 1px solid #D4AF37; 
+            color: #fff; 
+            padding: 10px; 
+            border-radius: 5px; 
+            font-family: 'Garamond', serif; 
+            font-size: 0.8rem; 
+            width: 220px; 
+        }
+
+        input:focus { outline: none; border-color: #fff; }
+        
+        .btn { 
+            background: #D4AF37; 
+            color: #000; 
+            border: none; 
+            padding: 10px 25px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            font-size: 0.65rem; 
+            border-radius: 5px; 
+            transition: 0.3s; 
+        }
+
+        .btn:hover { background: #fff; transform: scale(1.05); }
+
+        .btn-refresh {
+            background: #000;
+            color: #D4AF37;
+            border: 1px solid #D4AF37;
+        }
+
+        /* VAULT SECTION: THE GOOGLE DOC */
+        .vault-window { 
+            flex: 1.5; 
+            width: 100%; 
+            background: #fff; 
+            border-top: 2px solid #D4AF37; 
+        }
+
         iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
+
 <header><h1>SIGNATURE 7 | BOSS CREATORS</h1></header>
+
 <div class="main-container">
+    <!-- THE FACE (SIG7) -->
     <div class="agent-window">
-        <iframe src="https://studio.d-id.com/agents/share?id=v2_agt_00PFfGo9&utm_source=copy&key=WjI5dloyeGxMVzloZFhSb01ud3hNREV6TXpnMU16WTNNakF3TVRjM01EUTJOemc2Tm10UVZGazFObkZEWVdRd2RVOXlRV3RHTlRWVg==&stt_silence_timeout=5000" allow="microphone; camera; autoplay; encrypted-media; clipboard-write;"></iframe>
+        <iframe 
+            src="https://studio.d-id.com/agents/share?id=v2_agt_00PFfGo9&utm_source=copy&key=WjI5dloyeGxMVzloZFhSb01ud3hNREV6TXpnMU16WTNNakF3TVRjM01EUTJOemc2Tm10UVZGazFObkZEWVdRd2RVOXlRV3RHTlRWVg==&stt_silence_timeout=5000" 
+            allow="microphone; camera; autoplay; encrypted-media; clipboard-write;">
+        </iframe>
     </div>
+    
+    <!-- THE CONTROLS (EMAIL & DNA) -->
     <div class="control-bar">
-        <input type="email" id="email" placeholder="Recipient Email">
+        <input type="email" id="email" placeholder="Recipient Email Address">
         <input type="text" id="dna" placeholder="Brand Essence/Tone">
-        <button class="btn" id="lockBtn" onclick="lockSession()">SECURE SESSION & DNA</button>
-        <button class="btn" style="background:#000; color:#D4AF37; border:1px solid #D4AF37;" onclick="document.getElementById('vframe').src += ''">REFRESH VAULT</button>
+        <button class="btn" id="lockBtn" onclick="lockSession()">SECURE & ACTIVATE PORTAL</button>
+        <button class="btn btn-refresh" onclick="refreshVault()">REFRESH VAULT</button>
     </div>
+
+    <!-- THE VAULT (GOOGLE DOC) -->
     <div class="vault-window">
         <iframe id="vframe" src="https://docs.google.com/document/d/14RMLYQAbHVyoo9yLlwELcmf7T9A1_9XOwM_EnXFUt9A/preview"></iframe>
     </div>
 </div>
+
 <script>
     function lockSession() {
         const e = document.getElementById('email').value;
         const d = document.getElementById('dna').value;
         const btn = document.getElementById('lockBtn');
-        const vframe = document.getElementById('vframe');
+        const v = document.getElementById('vframe');
         
-        if(!e.includes('@')) return alert("Valid Email Required");
+        if(!e.includes('@')) return alert("Please enter a valid email address.");
         
-        btn.innerText = "WRITING TO VAULT...";
+        btn.innerText = "ARMING SYSTEM...";
         
-        // This MUST match your script URL
+        // YOUR UPDATED GOOGLE SCRIPT URL
         const url = "https://script.google.com/macros/s/AKfycbzVMpWQS-8wlWY5bnGLFTlfjX526_QAchpZe_uL7Muo3jXm09n1DhpMu-KSfs20fXzRg/exec";
         
-        fetch(url, { method: "POST", mode: "no-cors", body: JSON.stringify({ type: "registration", email: e, context: d }) });
+        // Send the data to the script
+        fetch(url, {
+            method: "POST",
+            mode: "no-cors",
+            body: JSON.stringify({ type: "registration", email: e, context: d })
+        });
 
-        // We wait 4 seconds to give Google time to "print" the email to the Doc
+        // We wait 3 seconds to ensure the Doc is updated, then refresh the frame
         setTimeout(() => {
-            btn.innerText = "VAULT SECURED 🥂";
+            btn.innerText = "SYSTEM ACTIVE 🥂";
             btn.style.background = "#fff";
             btn.style.color = "#000";
-            // Force the vault window to reload so you SEE the email change
-            vframe.src = vframe.src; 
-        }, 4000);
+            // Refresh the vault window so the user sees the email change
+            v.src = v.src; 
+        }, 3000);
     }
 
     function refreshVault() {
         document.getElementById('vframe').src += '';
     }
 </script>
+
 </body>
 </html>
