@@ -37,21 +37,29 @@
         const e = document.getElementById('email').value;
         const d = document.getElementById('dna').value;
         const btn = document.getElementById('lockBtn');
+        const vframe = document.getElementById('vframe');
+        
         if(!e.includes('@')) return alert("Valid Email Required");
         
-        btn.innerText = "LOCKING...";
+        btn.innerText = "WRITING TO VAULT...";
         
         // This MUST match your script URL
         const url = "https://script.google.com/macros/s/AKfycbzVMpWQS-8wlWY5bnGLFTlfjX526_QAchpZe_uL7Muo3jXm09n1DhpMu-KSfs20fXzRg/exec";
         
         fetch(url, { method: "POST", mode: "no-cors", body: JSON.stringify({ type: "registration", email: e, context: d }) });
 
+        // We wait 4 seconds to give Google time to "print" the email to the Doc
         setTimeout(() => {
             btn.innerText = "VAULT SECURED 🥂";
             btn.style.background = "#fff";
-            // FORCE the vault to show the locked email
-            document.getElementById('vframe').src += '';
-        }, 2000);
+            btn.style.color = "#000";
+            // Force the vault window to reload so you SEE the email change
+            vframe.src = vframe.src; 
+        }, 4000);
+    }
+
+    function refreshVault() {
+        document.getElementById('vframe').src += '';
     }
 </script>
 </body>
